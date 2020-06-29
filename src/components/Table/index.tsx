@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, Dispatch, SetStateAction, FC } from 'react';
 import './styles.css';
 import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 
-interface contacts {
+interface IContact {
   first: String;
   last: String;
   email: String;
@@ -10,8 +10,10 @@ interface contacts {
   hobby: String;
 }
 
-const Table: React.FC = () => {
-  const [contacts, setContacts] = useState<contacts[]>([
+const Table: FC<{ handleToogleModal: Dispatch<any> }> = ({
+  handleToogleModal,
+}) => {
+  const [contacts, setContacts] = useState<IContact[]>([
     {
       first: 'André',
       last: 'Castelo',
@@ -50,7 +52,7 @@ const Table: React.FC = () => {
           <div className="buttons">
             <div
               className="edit-icon"
-              onClick={() => alert(`edit ${contact.first}`)}
+              onClick={() => handleToogleModal(contact)}
             >
               <FiEdit3 size={25} />
             </div>
