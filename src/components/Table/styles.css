@@ -1,0 +1,71 @@
+ul {
+  padding: 0 90px;
+  margin-top: 20px;
+  list-style: none;
+}
+
+ul li {
+  display: flex;
+  padding: 5px 30px;
+  background-color: #3ca59d;
+  margin: 10px;
+  justify-content: space-between;
+  border-radius: 4px;
+}
+
+ul li div#field span {
+  color: #ccc;
+  font-family: MuseoModerno;
+}
+
+ul li div#field h3 {
+  color: #fff;
+  margin: 0;
+}
+
+ul li h3 {
+  font-size: 20px;
+  font-weight: 400;
+  font-family: MuseoModerno;
+  color: #f4f7f8;
+}
+
+ul li div.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+ul li div.buttons div.edit-icon {
+  color: #f4f6f8;
+}
+ul li div.buttons div.edit-icon:hover {
+  transition: color 0.4s ease-out;
+  color: #ffa931;
+}
+ul li div.buttons div.remove-icon {
+  color: #f4f6f8;
+}
+ul li div.buttons div.remove-icon:hover {
+  transition: color 0.4s ease-out;
+  color: #e73838;
+}
+
+ul li div.buttons button#button {
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  background-color: #f4f6f8;
+  border: 0;
+  outline: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 4px;
+  margin: 5px;
+}
+
+ul li div.buttons button#button:hover {
+  transition-property: all;
+  transition: 0.4s ease-out;
+  background-color: #ccc;
+}

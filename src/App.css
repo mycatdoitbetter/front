@@ -1,0 +1,59 @@
+div.home-container {
+  height: 100vh;
+  background: url('assets/background.png') no-repeat;
+  background-size: 60%;
+  background-position: right;
+}
+
+div h1.title {
+  text-align: center;
+  color: #3ca59d;
+  font-family: MuseoModerno;
+  font-weight: 700;
+  font-size: 70px;
+}
+
+div h2.description {
+  color: #5a3d55;
+  font-size: 40px;
+  font-weight: 700;
+  width: 30%;
+  padding: 30px 100px;
+  font-family: MuseoModerno;
+}
+
+div button#go-to-bottom {
+  width: 150px;
+  height: 30px;
+  max-height: 50px;
+  border-radius: 75px 75px 0 0;
+  background-color: #3ca59d;
+  border: 0;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  outline: none;
+}
+
+div button#go-to-bottom:hover {
+  width: 150px;
+  height: 100px;
+  transition-property: all;
+  transition: 0.6s ease-out;
+  background-color: #32857e;
+  border: 0;
+  position: absolute;
+  border-radius: 75px 75px 0 0;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+  outline: none;
+}
+
+div.schedule-container {
+  height: 100vh;
+}
+div.schedule-container div.table {
+  padding: 30px;
+}
