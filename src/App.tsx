@@ -1,6 +1,6 @@
-import React, { useRef, useState, MutableRefObject } from 'react';
+import React, { useRef, useState } from 'react';
 import './App.css';
-
+import api from './services/api';
 import { FiChevronDown, FiX, FiPlus } from 'react-icons/fi';
 import Table from './components/Table';
 
@@ -31,7 +31,6 @@ const Schedule: React.FC = () => {
   return (
     <>
       {/* Home Screen */}
-
       <div className="home-container">
         <h1 className="title">Enjoy your own Master Schedule!</h1>
         <h2 className="description">

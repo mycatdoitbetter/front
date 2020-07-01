@@ -1,7 +1,7 @@
-import React, { useState, Dispatch, SetStateAction, FC } from 'react';
+import React, { useState, Dispatch, useEffect, FC } from 'react';
 import './styles.css';
 import { FiEdit3, FiTrash2 } from 'react-icons/fi';
-
+import api from '../../services/api';
 interface IContact {
   first: string;
   last: string;
@@ -28,6 +28,17 @@ const Table: FC<{ handleToogleModal: Dispatch<IContact> }> = ({
       setContacts(contacts.filter((contact) => contact.phone !== phone));
     }
   }
+  async function getContacts() {
+    try {
+      const response = await api.get('/contacts');
+      setContacts(response.data);
+    } catch (error) {
+      console.log({ error });
+    }
+  }
+  useEffect(() => {
+    getContacts();
+  }, []);
 
   return (
     <ul>
