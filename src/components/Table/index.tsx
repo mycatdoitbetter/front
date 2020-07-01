@@ -3,14 +3,14 @@ import './styles.css';
 import { FiEdit3, FiTrash2 } from 'react-icons/fi';
 
 interface IContact {
-  first: String;
-  last: String;
-  email: String;
+  first: string;
+  last: string;
+  email: string;
   phone: number;
-  hobby: String;
+  hobby: string;
 }
 
-const Table: FC<{ handleToogleModal: Dispatch<any> }> = ({
+const Table: FC<{ handleToogleModal: Dispatch<IContact> }> = ({
   handleToogleModal,
 }) => {
   const [contacts, setContacts] = useState<IContact[]>([

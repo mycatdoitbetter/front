@@ -77,7 +77,7 @@
 .content {
   /* display: flex; */
   background-color: #3ca59d;
-  margin: 15% auto;
+  margin: 5% auto;
   border-radius: 4px;
   border: 0px;
   width: 40%;
@@ -110,4 +110,81 @@
 .background .header #x:hover {
   transition: color 0.4s ease-out;
   color: #e73838;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px 40px 40px;
+  align-self: center;
+  justify-content: center;
+}
+.form .field-group {
+  align-items: center;
+  display: flex;
+  grid-row: auto;
+}
+
+.form label {
+  color: #f4f7f8;
+  font-size: 20px;
+  font-family: MuseoModerno;
+}
+
+.form input {
+  display: flex;
+  border: 0;
+  background-color: #f4f7f8;
+  outline: none;
+  border-radius: 4px;
+  height: 30px;
+  padding: 0 10px;
+  color: #5a3d55;
+  font-size: 16px;
+}
+
+.form button {
+  margin: 20px 50px 0 50px;
+  border: 0;
+  outline: none;
+  border-radius: 4px;
+  height: 50px;
+  background-color: #f4f7f8;
+  color: #32857e;
+  font-size: 25px;
+  font-family: MuseoModerno;
+}
+
+.form button:hover {
+  transition: all 0.5s ease-out;
+  background-color: #32857e;
+  color: #f4f7f8;
+}
+
+.add-button span#hide {
+  display: none;
+}
+
+.add-button {
+  border: 0;
+  align-items: center;
+  display: flex;
+  outline: none;
+  background-color: #3ca59d;
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+  color: #f4f7f8;
+  margin: 0px auto;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.add-button:hover {
+  width: 100px;
+  transition: all 0.5s;
+}
+
+.add-button:hover span#hide {
+  display: flex;
 }
