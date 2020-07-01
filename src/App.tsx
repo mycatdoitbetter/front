@@ -1,10 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, FormEvent, ChangeEvent } from 'react';
 import './App.css';
 import api from './services/api';
 import { FiChevronDown, FiX, FiPlus } from 'react-icons/fi';
 import Table from './components/Table';
 
 interface IContact {
+  id?: number;
   first: string;
   last: string;
   email: string;
@@ -18,14 +19,43 @@ const Schedule: React.FC = () => {
   const [toogleEditModal, setToogleEditModal] = useState<Boolean>(false);
   const [toogleRecordModal, setToogleRecordModal] = useState<Boolean>(false);
   const [contact, setContact] = useState<IContact>();
+  const [formData, setFormData] = useState<{}>();
 
   function handleToogleModal(contact: IContact) {
+    setFormData({
+      first: contact.first,
+      last: contact.last,
+      email: contact.email,
+      phone: contact.phone,
+      hobby: contact.hobby,
+    });
     setToogleEditModal(true);
     setContact(contact);
   }
-
   function scrollToBottom() {
     scheduleRef.current.scrollIntoView({ behavior: 'smooth' });
+  }
+  async function editContact(e: FormEvent) {
+    e.preventDefault();
+    try {
+      api.put(`contacts/${contact?.id}`, formData);
+      window.location.reload(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function addContact(e: FormEvent) {
+    e.preventDefault();
+    try {
+      api.post(`contacts`, formData);
+      window.location.reload(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  function handleForm(event: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
   }
 
   return (
@@ -66,13 +96,14 @@ const Schedule: React.FC = () => {
                   <FiX size={30} />
                 </p>
               </div>
-              <form action="submit" className="form">
+              <form action="submit" className="form" onSubmit={editContact}>
                 <label htmlFor="first">Name</label>
                 <input
                   type="text"
                   placeholder="First Name"
                   name="first"
                   defaultValue={contact?.first}
+                  onChange={handleForm}
                 />
                 <label htmlFor="last">Last</label>
                 <input
@@ -80,6 +111,7 @@ const Schedule: React.FC = () => {
                   placeholder="Last Name"
                   name="last"
                   defaultValue={contact?.last}
+                  onChange={handleForm}
                 />
 
                 <label htmlFor="phone">Phone</label>
@@ -88,6 +120,7 @@ const Schedule: React.FC = () => {
                   placeholder="Phone"
                   name="phone"
                   defaultValue={contact?.phone}
+                  onChange={handleForm}
                 />
                 <label htmlFor="email">Email</label>
                 <input
@@ -95,13 +128,15 @@ const Schedule: React.FC = () => {
                   placeholder="Email"
                   name="email"
                   defaultValue={contact?.email}
+                  onChange={handleForm}
                 />
                 <label htmlFor="hooby">Hooby</label>
                 <input
                   type="text"
-                  placeholder="hooby"
+                  placeholder="Hooby"
                   name="hobby"
                   defaultValue={contact?.hobby}
+                  onChange={handleForm}
                 />
                 <button type="submit">Edit!</button>
               </form>
@@ -119,17 +154,42 @@ const Schedule: React.FC = () => {
                   <FiX size={30} />
                 </p>
               </div>
-              <form action="submit" className="form">
+              <form action="submit" className="form" onSubmit={addContact}>
                 <label htmlFor="first">Name</label>
-                <input type="text" placeholder="First Name" name="first" />
+                <input
+                  type="text"
+                  placeholder="First Name"
+                  name="first"
+                  onChange={handleForm}
+                />
                 <label htmlFor="last">Last</label>
-                <input type="text" placeholder="Last Name" name="last" />
+                <input
+                  type="text"
+                  placeholder="Last Name"
+                  name="last"
+                  onChange={handleForm}
+                />
                 <label htmlFor="phone">Phone</label>
-                <input type="text" placeholder="Phone" name="phone" />
+                <input
+                  type="text"
+                  placeholder="Phone"
+                  name="phone"
+                  onChange={handleForm}
+                />
                 <label htmlFor="email">Email</label>
-                <input type="email" placeholder="Email" name="email" />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  onChange={handleForm}
+                />
                 <label htmlFor="hooby">Hooby</label>
-                <input type="text" placeholder="hooby" name="hobby" />
+                <input
+                  type="text"
+                  placeholder="hooby"
+                  name="hobby"
+                  onChange={handleForm}
+                />
                 <button type="submit">Add</button>
               </form>
             </div>

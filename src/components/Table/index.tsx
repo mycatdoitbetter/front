@@ -1,8 +1,9 @@
 import React, { useState, Dispatch, useEffect, FC } from 'react';
 import './styles.css';
-import { FiEdit3, FiTrash2 } from 'react-icons/fi';
+import { FiEdit3, FiTrash2, FiFrown } from 'react-icons/fi';
 import api from '../../services/api';
 interface IContact {
+  id?: number;
   first: string;
   last: string;
   email: string;
@@ -13,24 +14,17 @@ interface IContact {
 const Table: FC<{ handleToogleModal: Dispatch<IContact> }> = ({
   handleToogleModal,
 }) => {
-  const [contacts, setContacts] = useState<IContact[]>([
-    {
-      first: 'André',
-      last: 'Castelo',
-      email: 'andre.castelo@gmail.com',
-      phone: 985859696,
-      hobby: 'Comer',
-    },
-  ]);
+  const [contacts, setContacts] = useState<IContact[]>([]);
 
-  function removeContact(phone: number, name: String) {
+  async function removeContact(id: any, name: String) {
     if (window.confirm(`Você realmente deseja excluir ${name}?`)) {
-      setContacts(contacts.filter((contact) => contact.phone !== phone));
+      await api.delete(`contacts/${id}`);
+      window.location.reload(false);
     }
   }
   async function getContacts() {
     try {
-      const response = await api.get('/contacts');
+      const response = await api.get<IContact[]>('/contacts');
       setContacts(response.data);
     } catch (error) {
       console.log({ error });
@@ -42,42 +36,49 @@ const Table: FC<{ handleToogleModal: Dispatch<IContact> }> = ({
 
   return (
     <ul>
-      {contacts.map((contact, index) => (
-        <li key={index}>
-          <div id="field">
-            <span className="label">Nome</span>
-            <h3 className="value">{`${contact.first} ${contact.last}`}</h3>
-          </div>
-          <div id="field">
-            <span className="label">Email</span>
-            <h3 className="value">{contact.email}</h3>
-          </div>
-          <div id="field">
-            <span className="label">Telefone</span>
-            <h3 className="value">{contact.phone}</h3>
-          </div>
-          <div id="field">
-            <span className="label">Hobby</span>
-            <h3 className="value">{contact.hobby}</h3>
-          </div>
-          <div className="buttons">
-            <div
-              className="edit-icon"
-              onClick={() => handleToogleModal(contact)}
-            >
-              <FiEdit3 size={25} />
+      {contacts.length > 0 ? (
+        contacts.map((contact, index) => (
+          <li key={index}>
+            <div id="field">
+              <span className="label">Nome</span>
+              <h3 className="value">{`${contact.first} ${contact.last}`}</h3>
             </div>
-            <div
-              className="remove-icon"
-              onClick={() => {
-                removeContact(contact.phone, contact.first);
-              }}
-            >
-              <FiTrash2 size={25} />
+            <div id="field">
+              <span className="label">Email</span>
+              <h3 className="value">{contact.email}</h3>
             </div>
+            <div id="field">
+              <span className="label">Telefone</span>
+              <h3 className="value">{contact.phone}</h3>
+            </div>
+            <div id="field">
+              <span className="label">Hobby</span>
+              <h3 className="value">{contact.hobby}</h3>
+            </div>
+            <div className="buttons">
+              <div
+                className="edit-icon"
+                onClick={() => handleToogleModal(contact)}
+              >
+                <FiEdit3 size={25} />
+              </div>
+              <div
+                className="remove-icon"
+                onClick={() => removeContact(contact.id, contact.first)}
+              >
+                <FiTrash2 size={25} />
+              </div>
+            </div>
+          </li>
+        ))
+      ) : (
+        <li>
+          <div id="field">
+            {/* <FiFrown size={30} /> */}
+            <h3 className="value">Sem contatos cadastrados</h3>
           </div>
         </li>
-      ))}
+      )}
     </ul>
   );
 };
