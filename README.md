@@ -8,7 +8,7 @@ React js application to manage contacts!
 </strong>
 </p>
 
-<p align="center">This frontend was made with the backend struct in Java Spring Boot. See the repository <a href="https://github.com/mycatdoitbetter/schedule-backend">there!</a></p>
+<p align="center">This frontend was made with the backend struct in Java Spring Boot. See the repository <a href="https://github.com/mycatdoitbetter/schedule-backend">here!</a></p>
 
 </p>
 <p align="center">
@@ -17,7 +17,7 @@ React js application to manage contacts!
     <img src="https://img.shields.io/badge/Typescript-informational?logo=typescript"></img>
   </a>
   <a aria-label="React Version" href="https://www.typescriptlang.org">
-    <img src="https://img.shields.io/badge/react_16.13.1-informational?logo=react"></img>
+    <img src="https://img.shields.io/badge/React-16.13.1-informational?logo=react"></img>
   </a>
 
 </p>
