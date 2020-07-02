@@ -40,7 +40,7 @@ const Table: FC<{ handleToogleModal: Dispatch<IContact> }> = ({
         contacts.map((contact, index) => (
           <li key={index}>
             <div id="field">
-              <span className="label">Nome</span>
+              <span className="label">Name</span>
               <h3 className="value">{`${contact.first} ${contact.last}`}</h3>
             </div>
             <div id="field">
@@ -48,7 +48,7 @@ const Table: FC<{ handleToogleModal: Dispatch<IContact> }> = ({
               <h3 className="value">{contact.email}</h3>
             </div>
             <div id="field">
-              <span className="label">Telefone</span>
+              <span className="label">Phone</span>
               <h3 className="value">{contact.phone}</h3>
             </div>
             <div id="field">
@@ -72,10 +72,10 @@ const Table: FC<{ handleToogleModal: Dispatch<IContact> }> = ({
           </li>
         ))
       ) : (
-        <li>
-          <div id="field">
+        <li id="empty-field">
+          <div id="empty-field">
             {/* <FiFrown size={30} /> */}
-            <h3 className="value">Sem contatos cadastrados</h3>
+            <h3>You dont have contacts, add someone! :D</h3>
           </div>
         </li>
       )}

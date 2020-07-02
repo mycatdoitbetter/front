@@ -11,6 +11,15 @@ ul li {
   margin: 10px;
   justify-content: space-between;
   border-radius: 4px;
+  align-items: center;
+}
+ul li#empty-field {
+  padding: 5px 30px;
+  background-color: #3ca59d;
+  margin: 10px;
+  justify-content: center;
+  border-radius: 4px;
+  align-items: center;
 }
 
 ul li div#field span {
@@ -21,6 +30,11 @@ ul li div#field span {
 ul li div#field h3 {
   color: #fff;
   margin: 0;
+}
+ul li div#empty-field h3 {
+  color: #fff;
+  margin: 0;
+  text-align: center;
 }
 
 ul li h3 {
